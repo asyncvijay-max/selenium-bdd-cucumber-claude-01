@@ -12,19 +12,44 @@ public class StorePage extends BasePage {
     private final By searchButton = By.cssSelector("[value='Search']");
     private final By searchResults = By.cssSelector("#main h1");
 
+    // add product to cart button
+    private final By addProductToCart = By.cssSelector("[aria-label='Add “Blue Shoes” to your cart']");
+
+     //View cart Link
+    private final By viewCartLink = By.cssSelector("[title='View cart']");
+
+
+
     public void searchForTheProduct(String product)
     {
       driver.findElement(searchTextBox).sendKeys(product);
-
       driver.findElement(searchButton).click();
-
-
     }
 
     public String searchResultsText()
     {
         return driver.findElement(searchResults).getText();
     }
+
+    public void addTheProductToTheCart(String productName)  {
+        // We are dynamically selecting the locator based on product name
+         By addProductToCart = By.cssSelector("[aria-label='Add “"+productName+"” to your cart']");
+        driver.findElement(addProductToCart).click();
+
+        //slight delay for view cart link to appear
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clickOnViewCartLink()
+    {
+        driver.findElement(viewCartLink).click();
+        //This takes us to Cart Page
+    }
+
 
 
 

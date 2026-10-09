@@ -1,6 +1,7 @@
 package steps;
 
 import context.TestContext;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -27,6 +28,17 @@ public class StorePageSteps {
         String searchResult = context.getPageManager().getStorePage().searchResultsText();
         Thread.sleep(2000);
         Assert.assertTrue(searchResult.contains("Search results:"));
+    }
+
+    @And("Guest adds {string} in the cart")
+    public void guest_adds_shoes_in_the_cart(String prodName)
+    {
+        //This adds the product to the Cart From Store Page
+        context.getPageManager().getStorePage().addTheProductToTheCart(prodName);
+
+        //This click view cart link from Store Page. This takes us to Cart Page.
+        context.getPageManager().getStorePage().clickOnViewCartLink();
+
     }
 
 }
