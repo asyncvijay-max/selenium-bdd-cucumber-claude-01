@@ -1,7 +1,10 @@
 package pages;
 
+import config.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 public class HomePage extends BasePage{
 
@@ -16,7 +19,8 @@ public class HomePage extends BasePage{
 
 
     public void goToStorePageFromHomePage() throws InterruptedException {
-     driver.get("https://askomdch.com/");
+     //driver.get("https://askomdch.com/");
+      driver.get(ConfigReader.getConfigReader().getBaseUrl());
      Thread.sleep(2000);
      driver.findElement(storePageLink).click();
     }

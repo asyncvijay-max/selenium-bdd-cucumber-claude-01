@@ -15,7 +15,9 @@ public class HomePageSteps {
     @Given("Guest reaches Store Page")
     public void guest_reaches_store_page() throws InterruptedException {
 
-        context.getHomePage().goToStorePageFromHomePage();
+        //context.getHomePage().goToStorePageFromHomePage();
+
+        context.getPageManager().getHomePage().goToStorePageFromHomePage();
 
     }
 }
