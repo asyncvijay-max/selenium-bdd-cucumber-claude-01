@@ -19,8 +19,10 @@ public class HomePage extends BasePage{
 
 
     public void goToStorePageFromHomePage() throws InterruptedException {
-     //driver.get("https://askomdch.com/");
-      driver.get(ConfigReader.getConfigReader().getBaseUrl());
+      //driver.get("https://askomdch.com/");
+      //driver.get(ConfigReader.getConfigReader().getBaseUrl());
+        loadPage("/"); //This loads the Home Page
+
      Thread.sleep(2000);
      driver.findElement(storePageLink).click();
     }

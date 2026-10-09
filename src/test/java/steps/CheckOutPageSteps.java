@@ -1,8 +1,12 @@
 package steps;
 
 import context.TestContext;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import pages.CheckOutPage;
+
+import java.util.List;
+import java.util.Map;
 
 public class CheckOutPageSteps {
 
@@ -11,6 +15,27 @@ public class CheckOutPageSteps {
     public CheckOutPageSteps(TestContext context)
     {
         this.context = context;
+    }
+
+    @And("Guest fills the billing address")
+    public void guest_fills_the_billing_address(List<Map<String, String>> rows)
+    {
+        Map<String, String> billing = rows.get(0);
+        String firstName = billing.get("firstName");
+        String lastName  = billing.get("lastName");
+        String street    = billing.get("street");
+        String city      = billing.get("city");
+        String zip       = billing.get("zip");
+        String email     = billing.get("email");
+        context.getPageManager()
+                .getCheckOutPage()
+                .enterUserDetails(firstName, lastName, street, city, zip, email);
+    }
+
+    @And("Guest submits the Order")
+    public void guest_submits_the_order()
+    {
+      context.getPageManager().getCheckOutPage().placeOrder();
     }
 
 
